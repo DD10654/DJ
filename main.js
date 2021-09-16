@@ -3,7 +3,9 @@ leftY = 0;
 rightX = 0;
 rightY = 0;
 scoreLeft = 0;
+scoreRight = 0;
 statusSong = "";
+statusSong2 = "";
 faded = "";
 mem = "";
 
@@ -36,6 +38,16 @@ function draw() {
             faded.play()
         }
     }
+
+    statusSong2 = mem.isPlaying();
+
+    if (scoreRight > 0.02) {
+        circle(rightX, rightY, 20)
+        faded.stop()
+        if (songStatus2 == false) {
+            mem.play()
+        }
+    }
 }
 
 function modelLoaded() {
@@ -51,5 +63,8 @@ function gotPoses(result) {
         console.log(result);
         scoreLeft = result[0].pose.keypoints[9].score;
         console.log(scoreLeft);
+        scoreRight = result[0].pose.keypoints[10].score;
+        console.log(scoreRight);
+
     }
 }
